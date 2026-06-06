@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-parchment text-ink font-sans text-[17px] leading-[1.47] tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-primary px-[22px] py-[11px] text-[17px] font-normal text-white transition-transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-focus;
+  }
+
+  .btn-secondary-pill {
+    @apply inline-flex items-center justify-center rounded-full border border-primary bg-transparent px-[22px] py-[11px] text-[14px] font-normal text-primary transition-transform active:scale-95;
+  }
+
+  .btn-pearl {
+    @apply inline-flex items-center justify-center rounded-md bg-pearl px-[14px] py-2 text-[14px] text-ink-muted-80 ring-[3px] ring-divider-soft transition-transform active:scale-95;
+  }
+
+  .btn-dark-utility {
+    @apply inline-flex items-center justify-center rounded-sm bg-ink px-[15px] py-2 text-[14px] text-white transition-transform active:scale-95;
+  }
+
+  .utility-card {
+    @apply rounded-lg border border-hairline bg-canvas p-6;
+  }
+
+  .segment-btn {
+    @apply rounded-full px-4 py-2 text-[12px] font-normal tracking-[-0.12px] transition-all active:scale-95;
+  }
+
+  .segment-btn-active {
+    @apply bg-primary text-white;
+  }
+
+  .segment-btn-inactive {
+    @apply text-body-muted hover:text-white;
+  }
+}
+
+@keyframes expand-panel {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 600px;
+  }
+}
+
+.animate-expand {
+  animation: expand-panel 0.35s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
