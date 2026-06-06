@@ -485,10 +485,11 @@ export default function StudentDashboard({ state, setState }) {
                       key={p}
                       type="button"
                       onClick={() => setPage(p)}
+                      aria-label={`Page ${p}${p === page ? ' (current)' : ''}`}
+                      aria-current={p === page ? 'page' : undefined}
                       className={`h-2 rounded-full transition-all ${
                         p === page ? 'w-5 bg-primary' : 'w-2 bg-hairline hover:bg-ink-muted-48'
                       }`}
-                      aria-label={`Page ${p}`}
                     />
                   ))}
                 </div>

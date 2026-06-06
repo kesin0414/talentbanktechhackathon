@@ -63,11 +63,18 @@ export default function NotificationBell({ notifications, onMarkRead, onMarkAllR
 
   useEffect(() => {
     if (!open) return
-    const handle = (e) => {
+    const handlePointer = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false)
     }
-    document.addEventListener('mousedown', handle)
-    return () => document.removeEventListener('mousedown', handle)
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('pointerdown', handlePointer)
+    document.addEventListener('keydown', handleKey)
+    return () => {
+      document.removeEventListener('pointerdown', handlePointer)
+      document.removeEventListener('keydown', handleKey)
+    }
   }, [open])
 
   return (
