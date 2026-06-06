@@ -84,7 +84,7 @@ function TrajectoryBar({ from, to, change, count }) {
           {from}{' '}
           <span className="font-normal text-ink-muted-48">→</span> {to}
         </p>
-        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[12px] font-semibold text-primary">
+        <span className="rounded-full px-2 py-0.5 text-[12px] font-semibold" style={{ background: 'color-mix(in srgb, #0066cc 10%, transparent)', color: '#0066cc' }}>
           +{change}%
         </span>
       </div>
@@ -148,7 +148,7 @@ export default function UniversityAdmin() {
                 Structural career transitions · 2019–2026 cohort
               </p>
             </div>
-            <button type="button" className="btn-secondary-pill text-[12px]">
+            <button type="button" className="btn-secondary-pill-sm">
               Export CSV
             </button>
           </div>
@@ -172,7 +172,7 @@ export default function UniversityAdmin() {
             {NUDGE_LOG.map((entry) => (
               <article key={entry.id} className="py-5 first:pt-0 last:pb-0">
                 <div className="flex items-start justify-between gap-3">
-                  <span className="rounded-full bg-ink px-2.5 py-0.5 text-[10px] font-semibold text-white">
+                  <span className="badge-verified">
                     {entry.type}
                   </span>
                   <time className="shrink-0 text-[12px] text-ink-muted-48">

@@ -1,52 +1,241 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Apple-inspired Career OS color system */
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #0066cc;
+  --primary-foreground: #ffffff;
+  --secondary: #fafafc;
+  --secondary-foreground: #333333;
+  --muted: #f5f5f7;
+  --muted-foreground: #7a7a7a;
+  --accent: #f5f5f7;
+  --accent-foreground: #1d1d1f;
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+  --border: #e0e0e0;
+  --input: #e0e0e0;
+  --ring: #0071e3;
+  --chart-1: #0066cc;
+  --chart-2: #34c759;
+  --chart-3: #ff9500;
+  --chart-4: #af52de;
+  --chart-5: #ff2d55;
+  --radius: 0.625rem;
+
+  /* Custom tokens for Career OS (Apple design language) */
+  --surface-tile-dark: #272729;
+  --surface-tile-dark-2: #2a2a2c;
+  --surface-black: #000000;
+  --canvas-parchment: #f5f5f7;
+  --action-blue: #0066cc;
+  --sky-link-blue: #2997ff;
+  --success: #34c759;
+  --warning: #ff9500;
+  --error: #ff3b30;
+}
+
+@theme inline {
+  /* Fonts — Inter is the closest open-source SF Pro substitute */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+
+  /* Standard color mappings */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Apple design token color utilities */
+  --color-canvas: #ffffff;
+  --color-parchment: #f5f5f7;
+  --color-pearl: #fafafc;
+  --color-ink: #1d1d1f;
+  --color-ink-muted-80: #333333;
+  --color-ink-muted-48: #7a7a7a;
+  --color-body-muted: #cccccc;
+  --color-tile-1: #272729;
+  --color-tile-2: #2a2a2c;
+  --color-tile-3: #252527;
+  --color-hairline: #e0e0e0;
+  --color-divider-soft: #f0f0f0;
+  --color-primary-focus: #0071e3;
+  --color-primary-on-dark: #2997ff;
+  --color-success: #34c759;
+  --color-error: #ff3b30;
+  --color-warning: #ff9500;
+
+  /* Apple border radius scale */
+  --radius-none: 0px;
+  --radius-xs: 5px;
+  --radius-sm: 8px;     /* dark utility buttons, inline card imagery */
+  --radius-md: 11px;    /* pearl button capsules */
+  --radius-lg: 18px;    /* store utility cards, accessories grid */
+  --radius-xl: 22px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+
+  /* Apple letter-spacing scale */
+  --letter-spacing-display: -0.28px;
+  --letter-spacing-tight: -0.374px;
+  --letter-spacing-tagline: 0.231px;
+  --letter-spacing-nav: -0.12px;
+  --letter-spacing-caption: -0.224px;
+}
 
 @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
   body {
-    @apply bg-parchment text-ink font-sans text-[17px] leading-[1.47] tracking-tight;
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.47;
+    letter-spacing: -0.374px;
   }
 }
 
+/* ─── Apple-design component classes ─── */
 @layer components {
+  /* Primary blue pill CTA — the signature Apple action */
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-primary px-[22px] py-[11px] text-[17px] font-normal text-white transition-transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-focus;
+    @apply inline-flex items-center justify-center rounded-full bg-primary px-[22px] py-[11px] text-[17px] font-normal text-white transition-transform active:scale-95;
+    outline: none;
+  }
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--color-primary-focus);
+    outline-offset: 2px;
   }
 
+  /* Compact secondary ghost pill — for modal/card secondary actions */
+  .btn-secondary-pill-sm {
+    @apply inline-flex items-center justify-center rounded-full border border-primary bg-transparent px-[16px] py-[7px] text-[14px] font-normal text-primary transition-transform active:scale-95;
+  }
+
+  /* Compact primary pill — for card-level CTAs */
+  .btn-primary-sm {
+    @apply inline-flex items-center justify-center rounded-full bg-primary px-[16px] py-[7px] text-[14px] font-normal text-white transition-transform active:scale-95;
+    outline: none;
+  }
+  .btn-primary-sm:focus-visible {
+    outline: 2px solid var(--color-primary-focus);
+    outline-offset: 2px;
+  }
+
+  /* Ghost pill — secondary CTA alongside btn-primary */
   .btn-secondary-pill {
     @apply inline-flex items-center justify-center rounded-full border border-primary bg-transparent px-[22px] py-[11px] text-[14px] font-normal text-primary transition-transform active:scale-95;
   }
 
+  /* Pearl capsule — subtle card-level action */
   .btn-pearl {
-    @apply inline-flex items-center justify-center rounded-md bg-pearl px-[14px] py-2 text-[14px] text-ink-muted-80 ring-[3px] ring-divider-soft transition-transform active:scale-95;
+    @apply inline-flex items-center justify-center bg-pearl px-[14px] py-2 text-[14px] text-ink-muted-80 transition-transform active:scale-95;
+    border-radius: 11px;
+    box-shadow: 0 0 0 3px #f0f0f0;
   }
 
+  /* Dark utility — nav actions (Sign In, Bag) */
   .btn-dark-utility {
-    @apply inline-flex items-center justify-center rounded-sm bg-ink px-[15px] py-2 text-[14px] text-white transition-transform active:scale-95;
+    @apply inline-flex items-center justify-center bg-ink px-[15px] py-2 text-[14px] text-white transition-transform active:scale-95;
+    border-radius: 8px;
   }
 
+  /* Store utility card — white, hairline border, 18px radius */
   .utility-card {
-    @apply rounded-lg border border-hairline bg-canvas p-6;
+    border-radius: 18px;
+    @apply border border-hairline bg-canvas p-6;
   }
 
+  /* Role-switcher pill segments */
   .segment-btn {
-    @apply rounded-full px-4 py-2 text-[12px] font-normal tracking-[-0.12px] transition-all active:scale-95;
+    @apply rounded-full px-4 py-2 text-[14px] font-normal transition-all active:scale-95;
+    letter-spacing: -0.12px;
   }
-
   .segment-btn-active {
     @apply bg-primary text-white;
   }
-
   .segment-btn-inactive {
     @apply text-body-muted hover:text-white;
   }
+
+  /* Frosted glass sub-nav (Apple sub-nav-frosted) */
+  .sub-nav-frosted {
+    background: rgba(245, 245, 247, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  /* Full-bleed dark product tile */
+  .tile-dark {
+    @apply bg-tile-1 text-white;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* Full-bleed light/parchment product tile */
+  .tile-light {
+    @apply bg-parchment text-ink;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* Skill-verified badge */
+  .badge-verified {
+    @apply rounded-full px-2 py-0.5 text-[10px] font-semibold;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+  }
+
+  /* Neutral pill tag (capability chips, criteria) */
+  .tag-pill {
+    @apply rounded-full border border-hairline bg-parchment px-2.5 py-0.5 text-[11px] font-semibold text-ink-muted-80;
+  }
 }
 
+/* ─── Apple typography helpers ─── */
+.tracking-tight-apple {
+  letter-spacing: -0.374px;
+}
+.tracking-display-apple {
+  letter-spacing: -0.28px;
+}
+
+/* ─── Animations ─── */
 @keyframes expand-panel {
   from {
     opacity: 0;
@@ -57,20 +246,14 @@
     max-height: 600px;
   }
 }
-
 .animate-expand {
   animation: expand-panel 0.35s ease-out forwards;
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 .animate-fade-in {
   animation: fade-in 0.2s ease-out forwards;
 }

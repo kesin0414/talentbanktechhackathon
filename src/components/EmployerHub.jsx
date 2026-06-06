@@ -95,9 +95,9 @@ function PortfolioModal({ candidate, onClose }) {
               {candidate.capabilities.map((cap) => (
                 <span
                   key={cap}
-                  className="rounded-full border border-hairline bg-parchment px-3 py-1 text-[12px] font-semibold text-ink"
+                  className="tag-pill"
                 >
-                  [{cap}]
+                  {cap}
                 </span>
               ))}
             </div>
@@ -219,7 +219,7 @@ export default function EmployerHub({ state, setState }) {
     <div className="mx-auto max-w-[1440px] px-5 py-8 lg:px-8">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-[28px] font-semibold tracking-tight text-ink sm:text-[34px]">
+          <h1 className="text-[34px] font-semibold tracking-tight text-ink sm:text-[40px]">
             Talent Discovery: Filter by CGPA, verify by actual capability
           </h1>
           <p className="mt-2 max-w-xl text-[14px] text-ink-muted-48">
@@ -244,7 +244,7 @@ export default function EmployerHub({ state, setState }) {
           <ul className="mt-3 space-y-2">
             {challenges.map((c) => (
               <li key={c.id} className="text-[14px] text-ink-muted-80">
-                <strong className="text-ink">{c.title}</strong> — [{c.skill}]
+                <strong className="text-ink">{c.title}</strong> — <span className="tag-pill inline-flex">{c.skill}</span>
               </li>
             ))}
           </ul>
@@ -291,10 +291,10 @@ export default function EmployerHub({ state, setState }) {
                       </span>
                     </p>
                     <span
-                      className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                      className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[12px] font-semibold ${
                         candidate.status === 'Interviewing'
-                          ? 'bg-amber-50 text-amber-700'
-                          : 'bg-emerald-50 text-emerald-700'
+                          ? 'bg-ink/10 text-ink'
+                          : 'bg-primary/10 text-primary'
                       }`}
                     >
                       {candidate.status}
@@ -308,9 +308,9 @@ export default function EmployerHub({ state, setState }) {
                       {candidate.capabilities.map((cap) => (
                         <span
                           key={cap}
-                          className="rounded-full border border-hairline bg-canvas px-2.5 py-0.5 text-[11px] font-semibold text-ink-muted-80"
+                          className="tag-pill"
                         >
-                          [{cap}]
+                          {cap}
                         </span>
                       ))}
                     </div>
