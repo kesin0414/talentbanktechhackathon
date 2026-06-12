@@ -357,7 +357,7 @@ function OpportunityCard({ opportunity, applied, onApply }) {
   )
 }
 
-export default function StudentDashboard({ state, setState }) {
+export default function StudentDashboard({ state, setState, challenges = [] }) {
   const { githubConnected, pdfUploaded, appliedOpportunities } = state
   const [page, setPage] = useState(1)
   const totalPages = Math.ceil(OPPORTUNITIES.length / PAGE_SIZE)
@@ -399,7 +399,7 @@ export default function StudentDashboard({ state, setState }) {
             <div>
               <h2 className="text-[17px] font-semibold text-ink">Alex Developer</h2>
               <p className="text-[14px] text-ink-muted-48">BSc Software Engineering · Year 3 · CGPA 3.8</p>
-              <p className="text-[12px] text-ink-muted-48">Faculty of Electrical & Electronic Engineering · UTHM</p>
+              <p className="text-[12px] text-ink-muted-48">Faculty of Computing & Informatics</p>
             </div>
           </div>
 
@@ -537,6 +537,59 @@ export default function StudentDashboard({ state, setState }) {
           </div>
 
         </div>
+      </div>
+
+      {/* ── Zone 4: Mock Challenges (full width) ── */}
+      <div className="mt-6 utility-card">
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            <h2 className="text-[21px] font-semibold tracking-tight text-ink">
+              Mock Challenges
+            </h2>
+            <p className="mt-1 text-[12px] text-ink-muted-48">
+              Skill-verification challenges set by employers
+            </p>
+          </div>
+          {challenges.length > 0 && (
+            <span className="text-[12px] text-ink-muted-48">
+              {challenges.length} open
+            </span>
+          )}
+        </div>
+
+        {challenges.length === 0 ? (
+          <div className="rounded-lg bg-parchment px-5 py-8 text-center">
+            <p className="text-[14px] text-ink-muted-48">
+              No challenges posted yet.
+            </p>
+            <p className="mt-1 text-[12px] text-ink-muted-48">
+              Employers will publish challenges here — check back soon.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {challenges.map((challenge) => (
+              <div
+                key={challenge.id}
+                className="flex flex-col rounded-lg border border-divider-soft bg-canvas p-4"
+              >
+                <p className="text-[17px] font-semibold tracking-tight text-ink">
+                  {challenge.title}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {(challenge.skills ?? []).map((skill) => (
+                    <span key={skill} className="tag-soft">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+                <button type="button" className="btn-primary-sm mt-4 self-start">
+                  Attempt Challenge →
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

@@ -225,6 +225,11 @@
   .tag-pill {
     @apply rounded-full border border-hairline bg-parchment px-2.5 py-0.5 text-[11px] font-semibold text-ink-muted-80;
   }
+
+  /* Borderless soft chip — Apple-minimal capability tag (no hard outline) */
+  .tag-soft {
+    @apply rounded-full bg-parchment px-2.5 py-1 text-[12px] font-semibold text-ink-muted-80;
+  }
 }
 
 /* ─── Apple typography helpers ─── */

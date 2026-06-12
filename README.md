@@ -1,6 +1,6 @@
 # Career OS — University Talent Platform
 
-An interactive, multi-view prototype for the **TalentBank Tech Hackathon**, built for Universiti Tun Hussein Onn Malaysia (UTHM). Career OS connects students, university administrators, and employers in one unified platform — verifying real capability beyond CGPA.
+An interactive, multi-view prototype for the **TalentBank Tech Hackathon**. Career OS connects students, university administrators, and employers in one unified platform — verifying real capability beyond CGPA.
 
 **Repository:** [github.com/kesin0414/talentbanktechhackathon](https://github.com/kesin0414/talentbanktechhackathon)
 

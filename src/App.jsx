@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   },
   notifications: {
     student: [
-      { id: 's1', type: 'github', title: 'GitHub repo “uthm-career-api” synced — +3 verified commits', time: '2 hours ago', read: false },
+      { id: 's1', type: 'github', title: 'GitHub repo “career-portfolio-api” synced — +3 verified commits', time: '2 hours ago', read: false },
       { id: 's2', type: 'skill', title: 'PostgreSQL skill level updated to 90% — Advanced module complete', time: 'Yesterday', read: false },
       { id: 's3', type: 'view', title: 'Profile viewed by Petronas Digital Talent Scout', time: '3 days ago', read: false },
       { id: 's4', type: 'brief', title: 'New match: Backend Engineer Intern at Grab — 78% match', time: '5 days ago', read: true },
@@ -42,21 +42,13 @@ function Footer() {
   return (
     <footer className="mt-16 border-t border-hairline bg-parchment px-5 py-16 lg:px-8">
       <div className="mx-auto max-w-[1440px]">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
           <div>
             <p className="text-[14px] font-semibold text-ink">Career OS</p>
             <ul className="mt-4 space-y-3 text-[14px] leading-[2.41] text-ink-muted-80">
               <li>Student Portal</li>
               <li>Admin Analytics</li>
               <li>Employer Hub</li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-[14px] font-semibold text-ink">University</p>
-            <ul className="mt-4 space-y-3 text-[14px] leading-[2.41] text-ink-muted-80">
-              <li>UTHM FSKTM</li>
-              <li>Faculty Integration</li>
-              <li>Alumni Network</li>
             </ul>
           </div>
           <div>
@@ -85,8 +77,7 @@ function Footer() {
           </div>
         </div>
         <p className="mt-12 text-[12px] text-ink-muted-48">
-          © 2026 Career OS · TalentBank Tech Hackathon Prototype · Universiti
-          Tun Hussein Onn Malaysia
+          © 2026 Career OS · TalentBank Tech Hackathon Prototype
         </p>
       </div>
     </footer>
@@ -153,7 +144,11 @@ export default function App() {
 
       <main>
         {appState.activeRole === 'student' && (
-          <StudentDashboard state={appState.student} setState={setStudentState} />
+          <StudentDashboard
+            state={appState.student}
+            setState={setStudentState}
+            challenges={appState.employer.challenges}
+          />
         )}
         {appState.activeRole === 'admin' && <UniversityAdmin />}
         {appState.activeRole === 'employer' && (

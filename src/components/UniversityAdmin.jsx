@@ -68,7 +68,7 @@ const NUDGE_LOG = [
     type: 'Industry Shift',
     severity: 'primary',
     message:
-      'Cloud migration demand up 38% in Johor. Triggered Azure Fundamentals pathway for 28 final-year students in FSKTM.',
+      'Cloud migration demand up 38% in Johor. Triggered Azure Fundamentals pathway for 28 final-year Computer Science students.',
     time: '2 days ago',
     impact: '28 students',
   },
